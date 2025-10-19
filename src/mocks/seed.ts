@@ -8,10 +8,10 @@ import type {
   AssessmentSection,
 } from "@/types";
 
-// Seed configuration
+// Seed configuration - matches assignment requirements
 const SEED_CONFIG = {
-  JOBS_COUNT: 6,
-  CANDIDATES_COUNT: 20,
+  JOBS_COUNT: 25,
+  CANDIDATES_COUNT: 1000,
   ASSESSMENTS_COUNT: 3,
   MIN_QUESTIONS_PER_ASSESSMENT: 10,
   MAX_QUESTIONS_PER_ASSESSMENT: 15,
@@ -98,7 +98,7 @@ export function generateJobs(): Job[] {
       id: faker.string.uuid(),
       title: title + (counter > 1 ? ` ${counter}` : ""),
       slug,
-      status: "active", // All jobs are active
+      status: faker.helpers.arrayElement(["active", "active", "active", "archived"]), // Mix of active/archived (75% active, 25% archived)
       tags: faker.helpers.arrayElements(TAGS, { min: 1, max: 4 }),
       order: i,
       description: faker.lorem.paragraphs(2),

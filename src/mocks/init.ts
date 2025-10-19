@@ -1,12 +1,27 @@
 import { db } from "@/lib/db";
 import { generateSeedData } from "./seed";
 
+const SEED_VERSION = "1.2"; // Increment this to force re-seeding
+
 export async function initializeDatabase() {
-  // Check if database is already populated
+  // Check seed version
+  const storedVersion = localStorage.getItem("talentflow_seed_version");
   const jobCount = await db.jobs.count();
 
-  if (jobCount === 0) {
-    console.log("📦 Database is empty. Seeding data...");
+  if (jobCount === 0 || storedVersion !== SEED_VERSION) {
+    if (storedVersion !== SEED_VERSION) {
+      console.log("📦 Seed version changed. Clearing and re-seeding data...");
+      // Clear all tables
+      await db.jobs.clear();
+      await db.candidates.clear();
+      await db.assessments.clear();
+      await db.timeline.clear();
+      await db.notes.clear();
+      await db.assessmentResponses.clear();
+    } else {
+      console.log("📦 Database is empty. Seeding data...");
+    }
+
     const { jobs, candidates, assessments } = generateSeedData();
 
     // Bulk add to database
@@ -25,7 +40,10 @@ export async function initializeDatabase() {
 
     await db.timeline.bulkAdd(timelineEvents);
 
-    console.log("✅ Database seeded successfully!");
+    // Store seed version
+    localStorage.setItem("talentflow_seed_version", SEED_VERSION);
+
+    console.log("✅ Database seeded successfully with version", SEED_VERSION);
   } else {
     console.log("✅ Database already populated with", jobCount, "jobs");
   }
