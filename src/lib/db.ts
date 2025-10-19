@@ -273,17 +273,35 @@ export const dbHelpers = {
     return db.assessments.where("jobId").equals(jobId).first();
   },
 
-  async saveAssessment(assessment: Assessment) {
-    const existing = await db.assessments.get(assessment.id);
+  async saveAssessment(assessment: Partial<Assessment> & { jobId: string }) {
+    // Check if assessment exists for this job
+    const existing = await db.assessments.where("jobId").equals(assessment.jobId).first();
+
+    const now = new Date();
+
     if (existing) {
-      await db.assessments.update(assessment.id, {
+      // Update existing assessment
+      await db.assessments.update(existing.id, {
         ...assessment,
-        updatedAt: new Date(),
+        id: existing.id,
+        createdAt: existing.createdAt,
+        updatedAt: now,
       });
+      return db.assessments.get(existing.id);
     } else {
-      await db.assessments.add(assessment);
+      // Create new assessment
+      const newAssessment: Assessment = {
+        id: crypto.randomUUID(),
+        title: assessment.title || "",
+        description: assessment.description || "",
+        jobId: assessment.jobId,
+        sections: assessment.sections || [],
+        createdAt: now,
+        updatedAt: now,
+      };
+      await db.assessments.add(newAssessment);
+      return newAssessment;
     }
-    return db.assessments.get(assessment.id);
   },
 
   async submitAssessmentResponse(response: Omit<AssessmentResponse, "id">) {
