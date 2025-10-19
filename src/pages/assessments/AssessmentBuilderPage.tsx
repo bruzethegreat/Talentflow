@@ -816,20 +816,26 @@ export function AssessmentBuilderPage() {
 
                           <div className="mt-2">
                             {question.type === "single-choice" &&
-                              question.options?.map((option) => (
-                                <div key={option} className="flex items-center gap-2 py-1">
-                                  <input type="radio" name={question.id} disabled />
-                                  <span className="text-sm">{option}</span>
-                                </div>
-                              ))}
+                              question.options?.map((option, idx) => {
+                                const optionText = typeof option === 'string' ? option : (option as any).label || (option as any).value || String(option);
+                                return (
+                                  <div key={idx} className="flex items-center gap-2 py-1">
+                                    <input type="radio" name={question.id} disabled />
+                                    <span className="text-sm">{optionText}</span>
+                                  </div>
+                                );
+                              })}
 
                             {question.type === "multi-choice" &&
-                              question.options?.map((option) => (
-                                <div key={option} className="flex items-center gap-2 py-1">
-                                  <input type="checkbox" disabled />
-                                  <span className="text-sm">{option}</span>
-                                </div>
-                              ))}
+                              question.options?.map((option, idx) => {
+                                const optionText = typeof option === 'string' ? option : (option as any).label || (option as any).value || String(option);
+                                return (
+                                  <div key={idx} className="flex items-center gap-2 py-1">
+                                    <input type="checkbox" disabled />
+                                    <span className="text-sm">{optionText}</span>
+                                  </div>
+                                );
+                              })}
 
                             {question.type === "short-text" && (
                               <Input
