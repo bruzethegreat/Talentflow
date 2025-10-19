@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { useParams, Link, useNavigate } from "react-router-dom";
+import { useParams, Link } from "react-router-dom";
 import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
 import {
   ArrowLeft,
@@ -9,7 +9,6 @@ import {
   GripVertical,
   Trash2,
   Edit2,
-  Copy,
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -43,7 +42,6 @@ import type {
   AssessmentSection,
   Question,
   QuestionType,
-  ConditionalLogic,
 } from "@/types";
 import {
   DndContext,
@@ -480,7 +478,6 @@ function QuestionEditor({
 
 export function AssessmentBuilderPage() {
   const { jobId } = useParams<{ jobId: string }>();
-  const navigate = useNavigate();
   const queryClient = useQueryClient();
 
   const [showPreview, setShowPreview] = useState(false);

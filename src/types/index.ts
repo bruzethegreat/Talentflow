@@ -41,6 +41,9 @@ export interface Candidate {
   stage: CandidateStage;
   resume: string;
   notes: Note[];
+  location?: string;
+  skills?: string[];
+  experience?: number;
   createdAt: Date;
   updatedAt: Date;
 }

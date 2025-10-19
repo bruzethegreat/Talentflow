@@ -150,12 +150,23 @@ export function KanbanBoardPage() {
       ]);
 
       if (previousCandidates) {
-        queryClient.setQueryData<CandidatesResponse>(["candidates-all"], {
-          ...previousCandidates,
-          data: previousCandidates.data.map((c) =>
-            c.id === id ? { ...c, stage } : c
-          ),
-        });
+        // Find the candidate being moved
+        const movedCandidate = previousCandidates.data.find((c) => c.id === id);
+
+        if (movedCandidate) {
+          // Remove the candidate from the list and update their stage
+          const filteredCandidates = previousCandidates.data.filter((c) => c.id !== id);
+          const updatedCandidate = { ...movedCandidate, stage };
+
+          // Add the updated candidate at the beginning of the array
+          // This ensures they appear at the top of their new column
+          const newData = [updatedCandidate, ...filteredCandidates];
+
+          queryClient.setQueryData<CandidatesResponse>(["candidates-all"], {
+            ...previousCandidates,
+            data: newData,
+          });
+        }
       }
 
       return { previousCandidates };

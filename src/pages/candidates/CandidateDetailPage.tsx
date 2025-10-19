@@ -255,7 +255,7 @@ export function CandidateDetailPage() {
                   <div className="space-y-2">
                     <label className="text-sm font-medium">Skills</label>
                     <div className="flex flex-wrap gap-2">
-                      {candidate.skills.map((skill) => (
+                      {candidate.skills.map((skill: string) => (
                         <Badge key={skill} variant="secondary">
                           {skill}
                         </Badge>

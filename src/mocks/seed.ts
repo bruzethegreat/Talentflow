@@ -4,7 +4,6 @@ import type {
   Candidate,
   Assessment,
   CandidateStage,
-  JobStatus,
   Question,
   AssessmentSection,
 } from "@/types";
