@@ -2,7 +2,7 @@
 
 A comprehensive hiring management platform built with modern web technologies. TalentFlow provides a complete solution for managing jobs, candidates, and assessments in a streamlined, user-friendly interface.
 
-## Features
+## Features 
 
 ### Job Management
 - **Job Listings**: Browse and manage all job postings with advanced filtering and search
