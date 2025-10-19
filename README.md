@@ -121,7 +121,7 @@ talentflow/
 │   ├── pages/               # Route pages
 │   │   ├── Dashboard.tsx
 │   │   ├── jobs/
-│   │   ├── candidates/
+│   │   ├── candidates/ 
 │   │   └── assessments/
 │   ├── lib/
 │   │   ├── db.ts            # IndexedDB setup with Dexie
