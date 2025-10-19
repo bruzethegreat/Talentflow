@@ -30,7 +30,7 @@ A comprehensive hiring management platform built with modern web technologies. T
   - Multiple Choice (checkboxes)
   - Short Text (single line)
   - Long Text (paragraph)
-  - Numeric (with min/max validation)
+  - Numeric (with min/max validation) 
   - Rating Scale (1-5 stars)
 - **Section Organization**: Group questions into logical sections
 - **Conditional Logic**: Show/hide questions based on previous answers
