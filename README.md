@@ -322,5 +322,5 @@ MIT License - feel free to use this project for learning or commercial purposes.
 Contributions are welcome! Please feel free to submit a Pull Request.
 
 ## Support
-
+   
 For issues or questions, please open an issue on GitHub.
