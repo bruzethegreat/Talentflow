@@ -9,7 +9,7 @@ A comprehensive hiring management platform built with modern web technologies. T
 - **Job Details**: View detailed information about each position including applicant statistics
 - **Drag & Drop Reordering**: Easily reorder jobs using intuitive drag-and-drop interface
 - **CRUD Operations**: Create, read, update, and delete job postings
-- **Status Tracking**: Monitor job status (Active, On Hold, Closed)
+- **Status Tracking**: Monitor job status (Active, On Hold, Closed) 
 
 ### Candidate Management
 - **Candidate Board**: Visual Kanban board for tracking candidates through hiring stages
